@@ -539,6 +539,8 @@ class CSCPicker extends StatefulWidget {
     this.currentState,
     this.currentCity,
     this.disableCountry = false,
+    this.disableCity = false,
+    this.disableState = false,
     this.countrySearchPlaceholder = "Search Country",
     this.stateSearchPlaceholder = "Search State",
     this.citySearchPlaceholder = "Search City",
@@ -560,6 +562,8 @@ class CSCPicker extends StatefulWidget {
   final String? currentCity;
 
   final bool disableCountry;
+  final bool disableState;
+  final bool disableCity;
 
   // clear button parameters
   final bool showClearButton;
@@ -934,7 +938,7 @@ class CSCPickerState extends State<CSCPicker> {
     return DropdownWithSearch(
       title: widget.stateDropdownLabel,
       placeHolder: widget.stateSearchPlaceholder,
-      disabled: _states.length == 0 ? true : false,
+      disabled: _states.length == 0 || widget.disableState ? true : false,
       items: _states.map((String? dropDownStringItem) {
         return dropDownStringItem;
       }).toList(),
@@ -962,7 +966,7 @@ class CSCPickerState extends State<CSCPicker> {
     return DropdownWithSearch(
       title: widget.cityDropdownLabel,
       placeHolder: widget.citySearchPlaceholder,
-      disabled: _cities.length == 0 ? true : false,
+      disabled: _cities.length == 0 || widget.disableCity ? true : false,
       items: _cities.map((String? dropDownStringItem) {
         return dropDownStringItem;
       }).toList(),
